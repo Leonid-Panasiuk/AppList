@@ -1,20 +1,20 @@
 <h2>Product list</h2>
 <div class="form-row form-group">
-    <div class="col">
-      <input type="text" [(ngModel)]="currentProductName" class="form-control" placeholder="Name Product">
-    </div>
-    
-    <div class="col">
-      <input type="number" [(ngModel)]="currentProductPrice" class="form-control" placeholder="Price">
-    </div>
-    <div class="col">
-      <input type="submit" class="btn btn-primary" (click)="onClick()" value="Add">
-     </div>
+  <div class="col">
+    <input type="text" [(ngModel)]="currentProductName" class="form-control" placeholder="Name Product">
+  </div>
+
+  <div class="col">
+    <input type="number" [(ngModel)]="currentProductPrice" class="form-control" placeholder="Price">
+  </div>
+  <div class="col">
+    <input type="submit" class="btn btn-primary" (click)="onClick()" value="Add">
+  </div>
 </div>
 <div class="form-row form-group">
   <div class="col-4">
-    <input  type="text" class="form-control" placeholder="Search">
-    </div>
+    <input type="text" [(ngModel)]="searchText" placeholder="Enter search product here" class="form-control">
+  </div>
 </div>
 <table class="table">
   <thead>
@@ -26,16 +26,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor = "let product of products | order:'up'; let i = index">
+    <tr *ngFor="let product of products | order:'up' | filter : searchText; let i = index">
       <th scope="row">{{ i + 1 }}</th>
       <td>{{product.name}}</td>
       <td>${{product.price}}</td>
-      <td><button type="button" (click)= "deleteProduct(i)" class="close">
+      <td><button type="button" (click)="deleteProduct(i)" class="close">
           <span aria-hidden="true">&times;</span>
         </button></td>
     </tr>
-    
-    
+
+
   </tbody>
   <tfoot>
     <td>Total</td>
@@ -44,8 +44,3 @@
     <td></td>
   </tfoot>
 </table>
-
-
-
-
-
